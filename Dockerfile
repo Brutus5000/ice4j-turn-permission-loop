@@ -8,4 +8,5 @@ RUN mvn -q -B -Dice4j.version=${ICE4J_VERSION} package
 
 FROM eclipse-temurin:21-jre
 COPY --from=build /build/target/repro.jar /repro.jar
-ENTRYPOINT ["java", "-jar", "/repro.jar"]
+ENTRYPOINT ["java", "-cp", "/repro.jar"]
+CMD ["repro.Repro"]

@@ -8,7 +8,7 @@ services:
       - --no-cli
       - --listening-port=3478
       - --min-port=49160
-      - --max-port=49200
+      - --max-port=65000
       - --realm=example.org
       - --lt-cred-mech
       - --user=test:secret
@@ -30,3 +30,19 @@ services:
       TURN_PASSWORD: secret
       REMOTE_CANDIDATE_IP: 10.1.2.3
       DURATION_SECONDS: ${DURATION_SECONDS:-10}
+
+  deadlock:
+    build:
+      context: .
+      args:
+        ICE4J_VERSION: ${ICE4J_VERSION:-3.2-22-gcb4d152}
+    command: ["repro.FreeDeadlock"]
+    depends_on:
+      - coturn
+    environment:
+      TURN_HOST: coturn
+      TURN_USER: test
+      TURN_PASSWORD: secret
+      REMOTE_CANDIDATE_IP: 10.1.2.3
+      ITERATIONS: ${ITERATIONS:-40}
+      FREE_MODE: ${FREE_MODE:-plain}
