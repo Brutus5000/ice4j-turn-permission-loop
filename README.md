@@ -12,11 +12,11 @@ Requires Docker with Compose.
 ./run.sh
 ```
 
-Expected output (ice4j `3.2-17-geea6cd3`, coturn 4.6.2):
+Expected output (ice4j `3.2-22-gcb4d152`, coturn 4.6.2):
 
 ```
 ICE state after 10s: Failed
-coturn received 69143 CreatePermission requests (69143 refused with 403 Forbidden IP)
+coturn received 68725 CreatePermission requests (68725 refused with 403 Forbidden IP)
 ```
 
 Another ice4j version can be tested with `ICE4J_VERSION=3.0-66-g1c60acc ./run.sh`.
